@@ -1,0 +1,54 @@
+﻿@model List<Farm_Management_System.farm_Management_SystemModel.Task>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Task Information Page</h2>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>Task Description</th>
+            <th>Project</th>
+            <th>Field</th>
+            <th>Plant</th>
+            <th>Task Status</th>
+            <th>Employee Incharge</th>
+            <th>Admin Assigned</th>
+            <th>Task Created Time</th>
+            <th>Task Update Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() == 0)
+        {
+            <tr>
+                <td colspan="9">No row smatch search criteria</td>
+            </tr>
+        }
+        @foreach (var uz in Model)
+        {
+            using (Html.BeginForm("task_Information_Page_Employee", "Task", new { id = uz.TaskId }))
+            {
+                <tr>
+                    <td>@uz.TaskId</td>
+                    <td>@uz.TaskDescription</td>
+                    <td>@uz.TaskProject</td>
+                    <td>@uz.TaskField</td>
+                    <td>@uz.TaskPlant</td>
+                    <td>@uz.TaskStatus</td>
+                    <td>@uz.EmployeeIncharge</td>
+                    <td>@uz.AdminAssigned</td>
+                    <td>@uz.TaskCreateTime</td>
+                    <td>@uz.TaskUpdateTime\</td>
+                    <td><a value="Edit" class="btn btn-warning" style="width:90px" asp-controller="Task" asp-action="task_Update_Page_Employee" asp-route-id="@uz.TaskId"><i class="bi bi-pencil-square"></i>Edit</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

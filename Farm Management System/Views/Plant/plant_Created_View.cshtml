@@ -1,0 +1,72 @@
+﻿@model plant_Column_Selection_Model
+
+@{
+    ViewData["Title"] = "Plant Created View Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Plant Created View Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Plant" asp-action="plant_Information_Page" class="btn btn-primary">Back to Plant List</a>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            @foreach (var selected_Property in Model.selected_Plant_Attribute) // Read the data in the "selected_Column" list
+            {
+                <th>
+                    @selected_Property
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uz in Model.Plants)
+        {
+            <tr>
+                @if (Model.selected_Plant_Attribute.Contains("PlantId"))
+                {
+                    <td>@uz.PlantId</td>
+                }
+                @if (Model.selected_Plant_Attribute.Contains("PlantName"))
+                {
+                    <td>@uz.PlantName</td>
+                }
+                @if (Model.selected_Plant_Attribute.Contains("PlantBugTime"))
+                {
+                    <td>@uz.PlantBugTime</td>
+                }
+                @if (Model.selected_Plant_Attribute.Contains("PlantFloweringTime"))
+                {
+                    <td>@uz.PlantFloweringTime</td>
+                }
+                @if (Model.selected_Plant_Attribute.Contains("PlantSetTime"))
+                {
+                    <td>@uz.PlantSetTime</td>
+                }
+                @if (Model.selected_Plant_Attribute.Contains("PlantGrowthTime"))
+                {
+                    <td>@uz.PlantGrowthTime</td>
+                }
+                @if (Model.selected_Plant_Attribute.Contains("PlantRipeningTime"))
+                {
+                    <td>@uz.PlantRipeningTime</td>
+                }
+                @if (Model.selected_Plant_Attribute.Contains("AdminUpdate"))
+                {
+                    <td>@uz.AdminUpdate</td>
+                }
+                @if (Model.selected_Plant_Attribute.Contains("PlantUpdateTime"))
+                {
+                    <td>@uz.PlantUpdateTime</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

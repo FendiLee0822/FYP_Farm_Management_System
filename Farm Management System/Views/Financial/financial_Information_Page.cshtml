@@ -1,0 +1,82 @@
+﻿@model List<Financial>
+
+    @{
+        ViewData["Title"] = "Financial Information Page";
+    }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-primary">Financial Information Page</h2>
+            </div>
+            <div class="col-6 text-right">
+                <a asp-controller="Financial" asp-action="financial_Create_Page" class="btn btn-primary">Create Financial</a>
+                <a asp-controller="Financial" asp-action="financial_Search_Page" class="btn btn-primary">Search Financial</a>
+                <a asp-controller="Financial" asp-action="financial_Attribute_Selection_View" class="btn btn-primary">Create View</a>
+                <hr />
+                <div>
+                    @using (Html.BeginForm("export_Financial_CSV", "Financial", FormMethod.Post))
+                    {
+                        <input type="submit" id="btnSubmit" value="Export_Financial_CSV" class="btn btn-primary" />
+                    }
+                </div>
+                <hr />
+            </div>
+        </div>
+    </div>
+
+    <table class="table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th><h2>Total Income</h2></th>
+                <th><h2>Total Expense</h2></th>
+                <th><h2>Net Value</h2></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@ViewData["TotalIncome"]</td>
+                <td>@ViewData["TotalExpense"]</td>
+                <td>@ViewData["NetValue"]</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+
+    <table class="table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Transaction Id</th>
+                <th>Transaction Name</th>
+                <th>Transaction Project</th>
+                <th>Income Amount</th>
+                <th>Expense Amount</th>
+                <th>Admin Update</th>
+                <th>Latest Update Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model?.Count() == 0)
+            {
+                <tr>
+                    <td colspan="6">No row smatch search criteria</td>
+                </tr>
+            }
+            @foreach (var uz in Model ?? Enumerable.Empty<Financial>())
+            {
+                <tr>
+                    <td>@uz.TransactionId</td>
+                    <td>@uz.TransactionName</td>
+                    <td>@uz.TransactionProject</td>
+                    <td>@uz.IncomeAmount</td>
+                    <td>@uz.ExpenseAmount</td>
+                    <td>@uz.AdminUpdate</td>
+                    <td>@uz.TransactionUpdateTime</td>
+                    <td><a value="Details" class="btn btn-primary" style="width:90px" asp-controller="Financial" asp-action="financial_Detail_Page" asp-route-id="@uz.TransactionId"><i class="bi bi-info-circle"></i>Details</a></td>
+                    <td><a value="Edit" class="btn btn-warning" style="width:90px" asp-controller="Financial" asp-action="financial_Update_Page" asp-route-id="@uz.TransactionId"><i class="bi bi-pencil-square"></i>Edit</a></td>
+                    <td><a value="Delete" class="btn btn-danger" style="width:90px" asp-controller="Financial" asp-action="financial_Delete_Page" asp-route-id="@uz.TransactionId"><i class="bi bi-trash"></i>Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>

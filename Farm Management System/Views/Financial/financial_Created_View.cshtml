@@ -1,0 +1,64 @@
+﻿@model financial_Column_Selection_Model
+
+@{
+    ViewData["Title"] = "Financial Created View Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Financial Created View Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Financial" asp-action="financial_Information_Page" class="btn btn-primary">Back to Transaction List</a>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            @foreach (var selected_Property in Model.selected_Transaction_Attribute) // Read the data in the "selected_Column" list
+            {
+                <th>
+                    @selected_Property
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uz in Model.Financial)
+        {
+        <tr>
+            @if (Model.selected_Transaction_Attribute.Contains("TransactionId"))
+            {
+                <td>@uz.TransactionId</td>
+            }
+            @if (Model.selected_Transaction_Attribute.Contains("TransactionName"))
+            {
+                <td>@uz.TransactionName</td>
+            }
+            @if (Model.selected_Transaction_Attribute.Contains("TransactionProject"))
+            {
+                <td>@uz.TransactionProject</td>
+            }
+            @if (Model.selected_Transaction_Attribute.Contains("IncomeAmount"))
+            {
+                <td>@uz.IncomeAmount</td>
+            }
+            @if (Model.selected_Transaction_Attribute.Contains("ExpenseAmount"))
+            {
+                <td>@uz.ExpenseAmount</td>
+            }
+            @if (Model.selected_Transaction_Attribute.Contains("AdminUpdate"))
+            {
+                <td>@uz.AdminUpdate</td>
+            }
+            @if (Model.selected_Transaction_Attribute.Contains("TransactionUpdateTime"))
+            {
+                <td>@uz.TransactionUpdateTime</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

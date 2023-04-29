@@ -1,0 +1,27 @@
+﻿@model User
+@{
+    ViewBag.Title = "login_Page";
+    Layout = "~/Views/_login_Page.cshtml";
+}
+
+
+<h1>Farm Management System </h1>
+<div class="clear-loading spinner">
+    <span></span>
+</div>
+<div class="w3ls-login box box--big">
+    <form asp-action="login_Verify" method="post">
+        <div class="agile-field-txt">
+            <label asp-for="UserId" class="fa fa-user" aria-hidden="true">UserId</label>
+            <input asp-for="UserId" type="text" class="form-control" placeholder="Enter User ID" />
+            <span asp-validation-for="UserId" class="text-danger"></span>
+
+        </div>
+        <div class="agile-field-txt">
+            <label asp-for="UserPwd" class="fa fa-user" aria-hidden="true">Password</label>
+            <input asp-for="UserPwd" class="form-control" placeholder="Enter your password" id="login_Pwd" type="password" />
+            <span asp-validation-for="UserPwd" class="text-danger"></span>
+        </div>
+        <input type="submit" value="LOGIN">
+    </form>
+</div>

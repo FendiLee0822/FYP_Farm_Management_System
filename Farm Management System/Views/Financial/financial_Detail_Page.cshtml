@@ -1,0 +1,57 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.Financial
+
+@{
+    ViewData["Title"] = "Financial Detail Page";
+}
+
+<div class="col-md-6">
+    <div class="mb-3">
+        <h2 class="text-primary">Financial Detail Page</h2>
+        <hr />
+    </div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-6">
+                TransactionName
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TransactionName)
+            </dd>
+            <dt class="col-sm-6">
+                Transaction Project
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TransactionProject)
+            </dd>
+            <dt class="col-sm-6">
+                Income Amount
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.IncomeAmount)
+            </dd>
+            <dt class="col-sm-6">
+                Expense Amount
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.ExpenseAmount)
+            </dd>
+            <dt class="col-sm-6">
+                Admin Update
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.AdminUpdate)
+            </dd>
+            <dt class="col-sm-6">
+                Latest Update Time
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TransactionUpdateTime)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="financial_Update_Page" asp-route-id="@Model.TransactionId" class="btn btn-primary">Edit</a>
+        <a asp-action="financial_Information_Page" class="btn btn-primary">Back to Transaction List</a>
+    </div>
+</div>
+

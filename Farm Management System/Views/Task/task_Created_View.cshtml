@@ -1,0 +1,76 @@
+﻿@model task_Column_Selection_Model
+
+@{
+    ViewData["Title"] = "Task Created View Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Task Created View Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Task" asp-action="task_Information_Page" class="btn btn-primary">Back to Task List</a>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            @foreach (var selected_Property in Model.selected_Task_Attribute) // Read the data in the "selected_Column" list
+            {
+                <th>
+                    @selected_Property
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uz in Model.Tasks)
+        {
+        <tr>
+            @if (Model.selected_Task_Attribute.Contains("TaskId"))
+            {
+                <td>@uz.TaskId</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("TaskDescription"))
+            {
+                <td>@uz.TaskDescription</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("TaskProject"))
+            {
+                <td>@uz.TaskProject</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("TaskField"))
+            {
+                <td>@uz.TaskField</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("TaskPlant"))
+            {
+                <td>@uz.TaskPlant</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("TaskStatus"))
+            {
+                <td>@uz.TaskStatus</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("EmployeeIncharge"))
+            {
+                <td>@uz.EmployeeIncharge</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("AdminAssigned"))
+            {
+                <td>@uz.AdminAssigned</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("TaskCreateTime"))
+            {
+                <td>@uz.TaskCreateTime</td>
+            }
+            @if (Model.selected_Task_Attribute.Contains("TaskUpdateTime"))
+            {
+                <td>@uz.TaskUpdateTime</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

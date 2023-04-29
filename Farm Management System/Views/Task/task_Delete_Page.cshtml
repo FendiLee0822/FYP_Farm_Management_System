@@ -1,0 +1,78 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.Task
+
+@{
+    ViewData["Title"] = "Task Delete Page";
+}
+
+<div class="col-md-6">
+    <div class="mb-3">
+        <h2 class="text-primary">Task Delete Page</h2>
+        <hr />
+    </div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-6">
+                Task Description
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskDescription)
+            </dd>
+            <dt class="col-sm-6">
+                Project
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskProject)
+            </dd>
+            <dt class="col-sm-6">
+                Field
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskField)
+            </dd>
+            <dt class="col-sm-6">
+                Plant
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskPlant)
+            </dd>
+            <dt class="col-sm-6">
+                Task Status
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskStatus)
+            </dd>
+            <dt class="col-sm-6">
+                Employee Incharge
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.EmployeeIncharge)
+            </dd>
+            <dt class="col-sm-6">
+                Admin Assigned
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.AdminAssigned)
+            </dd>
+            <dt class="col-sm-6">
+                Task Create Time
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskCreateTime)
+            </dd>
+            <dt class="col-sm-6">
+                Task Update Time
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskUpdateTime)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <form asp-action="task_Delete_Page">
+            <input type="hidden" asp-for="TaskId" />
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete task?')">Delete</button>
+            <a asp-action="task_Information_Page" class="btn btn-primary">Back to Task List</a>
+        </form>
+    </div>
+</div>
+

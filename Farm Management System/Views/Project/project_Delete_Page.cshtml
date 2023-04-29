@@ -1,0 +1,40 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.Project
+
+@{
+    ViewData["Title"] = "Project Delete Page";
+}
+
+<div class="col-md-4">
+    <div class="mb-3">
+        <h2 class="text-primary">Project Delete Page</h2>
+        <hr />
+    </div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-6">Project Name</dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.ProjectName)
+            </dd>
+            <dt class="col-sm-6">
+                Admin Create
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.AdminCreate)
+            </dd>
+            <dt class="col-sm-6">
+                Project Create Time
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.ProjectCreateTime)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <form asp-action="project_Delete_Page">
+            <input type="hidden" asp-for="ProjectId" />
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete project?')">Delete</button>
+            <a asp-action="project_Information_Page" class="btn btn-primary">Back to Project List</a>
+        </form>
+
+    </div>
+</div>

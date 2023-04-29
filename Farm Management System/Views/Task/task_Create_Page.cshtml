@@ -1,0 +1,78 @@
+﻿@model task_Creation_Model
+
+@{
+    ViewData["Title"] = "Task Create Page";
+}
+
+<div class="col-md-4">
+    <div class="mb-3">
+        <h2 class="text-primary">Task Create Page</h2>
+        <hr />
+    </div>
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Task.TaskDescription" class="control-label">Task Description</label>
+            <select asp-for="Task.TaskDescription" class="form-control" required>
+                <option value="">--Select Field--</option>
+                <option value="Irrigation">Irrigation</option>
+                <option value="Fertilization">Fertilization</option>
+                <option value="Pruning">Pruning</option>
+                <option value="Pest and disease management">Pest and disease management</option>
+                <option value="Thinning">Thinning</option>
+                <option value="Harvesting">Harvesting</option>
+                <option value="Sorting and grading">Sorting and grading</option>
+                <option value="Packing and storage">Packing and storage</option>
+            </select>
+            <span asp-validation-for="Task.TaskDescription" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Task.TaskProject" class="control-label">Project</label>
+            <select asp-for="Task.TaskProject" class="form-control required"
+                    asp-items="@(new SelectList(Model.Projects, "ProjectId", "ProjectName"))">
+                <option value="">--Select Project--</option>
+            </select>
+            <span asp-validation-for="Task.TaskProject" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Task.TaskField" class="control-label">Field</label>
+            <select asp-for="Task.TaskField" class="form-control" required
+                    asp-items="@(new SelectList(Model.Fields, "FieldId", "FieldName"))">
+                <option value="">--Select Field--</option>
+            </select>
+            <span asp-validation-for="Task.TaskField" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Task.TaskPlant" class="control-label">Plant</label>
+            <select asp-for="Task.TaskPlant" class="form-control" required
+                    asp-items="@(new SelectList(Model.Plants, "PlantId", "PlantName"))">
+                <option value="">--Select Plant--</option>
+            </select>
+            <span asp-validation-for="Task.TaskPlant" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Task.TaskStatus" type="hidden" value="New" style="width:360px" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Task.EmployeeIncharge" class="control-label">Employee Incharge</label>
+            <select asp-for="Task.EmployeeIncharge" class="form-control"
+                    asp-items="@(new SelectList(Model.Employees, "EmployeeId", "EmployeeId"))">
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Task.AdminAssigned" class="control-label">Admin Assigned</label>
+            <select asp-for="Task.AdminAssigned" class="form-control"
+                    asp-items="@(new SelectList(Model.Admins, "AdminId", "AdminId"))">
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to add task?')">Add Task</button>
+        <a asp-controller="Task" asp-action="task_Information_Page" class="btn btn-primary">Back To Tasks List</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

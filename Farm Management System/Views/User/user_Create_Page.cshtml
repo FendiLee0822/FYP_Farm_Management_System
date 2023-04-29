@@ -1,0 +1,62 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.User
+
+@{
+    ViewData["Title"] = "User Create Page";
+}
+
+<div class="col-md-4">
+    <div class="mb-3">
+        <h2 class="text-primary">User Create Page</h2>
+        <hr />
+    </div>
+
+    <form asp-action="user_Create_Page" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="UserFname" class="control-label">First Name</label>
+            <input asp-for="UserFname" class="form-control" required/>
+            <span asp-validation-for="UserFname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserLname" class="control-label">Last Name</label>
+            <input asp-for="UserLname" class="form-control" required/>
+            <span asp-validation-for="UserLname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserGender" class="control-label">Gender</label>
+            <select asp-for="UserGender" class="form-control" required>
+                <option value="">--Select Gender--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <span asp-validation-for="UserGender" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserDob" class="control-label">Date of Birth</label>
+            @*<input asp-for="UserDob" class="form-control" />*@
+            <input asp-for="UserDob" class="form-control" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            <span asp-validation-for="UserDob" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserPwd" class="control-label">Password</label>
+            <input asp-for="UserPwd" class="form-control" required/>
+            <span asp-validation-for="UserPwd" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserRole" class="control-label">Role</label>
+            <select asp-for="UserRole" class="form-control" required>
+                <option value="">--Select Role--</option>
+                <option value="Admin">Admin</option>
+                <option value="Employee">Employee</option>
+            </select>
+            <span asp-validation-for="UserRole" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to add user?')">Add User</button>
+        <a asp-controller="User" asp-action="user_Information_Page" class="btn btn-primary">Back To Users List</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

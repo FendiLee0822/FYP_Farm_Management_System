@@ -1,0 +1,130 @@
+﻿@model plant_Admin_Model
+
+@{
+    ViewData["Title"] = "Plant Update Page";
+}
+
+<div class="col-md-4">
+    <div class="mb-3">
+        <h2 class="text-primary">Plant Update Page</h2>
+        <hr />
+    </div>
+
+    <form asp-action="plant_Update_Page" method="post">
+        <input type="hidden" asp-for="Plant.PlantId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Plant.PlantName" class="control-label">Plant Name</label>
+            <input asp-for="Plant.PlantName" class="form-control" required />
+            <span asp-validation-for="Plant.PlantName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Plant.PlantBugTime" class="control-label">Plant Bug Time</label>
+            <select asp-for="Plant.PlantBugTime" class="form-control" required>
+                <option value="">--Select--</option>
+                <option value="1 Month">1 Month</option>
+                <option value="2 Month">2 Month</option>
+                <option value="3 Month">3 Month</option>
+                <option value="4 Month">4 Month</option>
+                <option value="5 Month">5 Month</option>
+                <option value="6 Month">6 Month</option>
+                <option value="7 Month">7 Month</option>
+                <option value="8 Month">8 Month</option>
+                <option value="9 Month">9 Month</option>
+                <option value="10 Month">10 Month</option>
+                <option value="11 Month">11 Month</option>
+                <option value="12 Month">12 Month</option>
+            </select>
+            <span asp-validation-for="Plant.PlantBugTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Plant.PlantFloweringTime" class="control-label">Plant Flowering Time</label>
+            <select asp-for="Plant.PlantFloweringTime" class="form-control" required>
+                <option value="">--Select--</option>
+                <option value="1 Month">1 Month</option>
+                <option value="2 Month">2 Month</option>
+                <option value="3 Month">3 Month</option>
+                <option value="4 Month">4 Month</option>
+                <option value="5 Month">5 Month</option>
+                <option value="6 Month">6 Month</option>
+                <option value="7 Month">7 Month</option>
+                <option value="8 Month">8 Month</option>
+                <option value="9 Month">9 Month</option>
+                <option value="10 Month">10 Month</option>
+                <option value="11 Month">11 Month</option>
+                <option value="12 Month">12 Month</option>
+            </select>
+            <span asp-validation-for="Plant.PlantSetTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Plant.PlantSetTime" class="control-label">Plant Set Time</label>
+            <select asp-for="Plant.PlantSetTime" class="form-control" required>
+                <option value="">--Select--</option>
+                <option value="1 Month">1 Month</option>
+                <option value="2 Month">2 Month</option>
+                <option value="3 Month">3 Month</option>
+                <option value="4 Month">4 Month</option>
+                <option value="5 Month">5 Month</option>
+                <option value="6 Month">6 Month</option>
+                <option value="7 Month">7 Month</option>
+                <option value="8 Month">8 Month</option>
+                <option value="9 Month">9 Month</option>
+                <option value="10 Month">10 Month</option>
+                <option value="11 Month">11 Month</option>
+                <option value="12 Month">12 Month</option>
+            </select>
+            <span asp-validation-for="Plant.PlantSetTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Plant.PlantGrowthTime" class="control-label">Plant Growth Time</label>
+            <select asp-for="Plant.PlantGrowthTime" class="form-control" required>
+                <option value="">--Select--</option>
+                <option value="1 Month">1 Month</option>
+                <option value="2 Month">2 Month</option>
+                <option value="3 Month">3 Month</option>
+                <option value="4 Month">4 Month</option>
+                <option value="5 Month">5 Month</option>
+                <option value="6 Month">6 Month</option>
+                <option value="7 Month">7 Month</option>
+                <option value="8 Month">8 Month</option>
+                <option value="9 Month">9 Month</option>
+                <option value="10 Month">10 Month</option>
+                <option value="11 Month">11 Month</option>
+                <option value="12 Month">12 Month</option>
+            </select>
+            <span asp-validation-for="Plant.PlantGrowthTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Plant.PlantRipeningTime" class="control-label">Plant Ripening Time</label>
+            <select asp-for="Plant.PlantRipeningTime" class="form-control" required>
+                <option value="">--Select--</option>
+                <option value="1 Month">1 Month</option>
+                <option value="2 Month">2 Month</option>
+                <option value="3 Month">3 Month</option>
+                <option value="4 Month">4 Month</option>
+                <option value="5 Month">5 Month</option>
+                <option value="6 Month">6 Month</option>
+                <option value="7 Month">7 Month</option>
+                <option value="8 Month">8 Month</option>
+                <option value="9 Month">9 Month</option>
+                <option value="10 Month">10 Month</option>
+                <option value="11 Month">11 Month</option>
+                <option value="12 Month">12 Month</option>
+            </select>
+            <span asp-validation-for="Plant.PlantRipeningTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Plant.AdminUpdate"></label>
+            <select asp-for="Plant.AdminUpdate"
+                    asp-items="@(new SelectList(Model.Admins, "AdminId", "AdminId"))"
+                    class="form-control">
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update user?')">Save</button>
+        <a asp-controller="Plant" asp-action="plant_Information_Page" class="btn btn-primary">Back To Plants List</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

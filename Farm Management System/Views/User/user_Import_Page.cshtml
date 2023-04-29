@@ -1,0 +1,41 @@
+﻿@model List<User>
+
+
+<a asp-controller="User" asp-action="user_Information_Page" class="btn btn-primary">Back to User List</a>
+<hr />
+<form asp-controller="User" asp-action="user_Import_Page" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <hr />
+    <button type="submit">Upload</button>
+</form>
+
+@if (Model.Count() > 0)
+{
+    <hr />
+    <h2 class="text-primary">Imported User List</h2>
+    <table class="table-bordered table-striped" style="width:auto">
+        <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Account Password</th>
+            <th>Role</th>
+        </tr>
+        <tbody>
+            @foreach (var uz in Model)
+            {
+                <tr>
+                    <td>@uz.UserId</td>
+                    <td>@uz.UserFname</td>
+                    <td>@uz.UserLname</td>
+                    <td>@uz.UserGender</td>
+                    <td>@uz.UserDob</td>
+                    <td>@uz.UserPwd</td>
+                    <td>@uz.UserRole</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

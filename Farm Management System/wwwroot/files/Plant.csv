@@ -1,0 +1,5 @@
+PlantId,PlantName,PlantBugTime,PlantFloweringTime,PlantSetTime,PlantGrowthTime,PlantRipeningTime,AdminUpdate,PlantUpdateTime,
+1,Mango,6 Month,4 Month,2 Month,4 Month,3 Month,3004,21/04/2023 15:31:51,
+2002,Durian,3 Month,5 Month,2 Month,3 Month,3 Month,3004,21/04/2023 15:32:38,
+2003,Papaya,2 Month,4 Month,3 Month,6 Month,3 Month,3004,21/04/2023 15:34:20,
+2004,Dragon Fruit,3 Month,3 Month,3 Month,4 Month,3 Month,3004,28/04/2023 12:14:02,

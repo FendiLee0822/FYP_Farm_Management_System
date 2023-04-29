@@ -1,0 +1,76 @@
+﻿@model List<Farm_Management_System.farm_Management_SystemModel.Task>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a asp-controller="Task" asp-action="task_Information_Page" class="btn btn-primary">Back to Task List</a>
+            <br />
+        </div>
+        <div class="col-6">
+            <h2 class="text-primary">Task Search Page</h2>
+        </div>
+    <div class="col-6 text-right">
+        @using (Html.BeginForm("task_Search_Page", "Task", FormMethod.Get))
+        {
+            <b>Search By:</b>
+            @Html.RadioButton("SearchBy", "TaskDescription") <span>TaskDescription</span>
+            @Html.RadioButton("SearchBy", "TaskProject") <span>TaskProject</span>
+            @Html.RadioButton("SearchBy", "TaskField") <span>TaskField</span>
+            <br />
+            @Html.RadioButton("SearchBy", "TaskPlant") <span>TaskPlant</span>
+            @Html.RadioButton("SearchBy", "TaskStatus") <span>TaskStatus</span>
+            <br />
+
+            @Html.TextBox("search")<input type="submit" value="Search" />
+        }
+        <br />
+        <br />
+    </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:auto">
+    <thead>
+        <tr>
+            <td>Task ID</td>
+            <td>Task Description</td>
+            <td>Task Project</td>
+            <td>Field</td>
+            <td>Plant</td>
+            <td>Task Status</td>
+            <td>Employee Incharge</td>
+            <td>Admin Assigned</td>
+            <td>Task Created Time</td>
+            <td>Task Update Time</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() == 0)
+        {
+            <tr>
+                <td colspan="95" style="color:red">
+                    No task under this role...
+                </td>
+            </tr>
+        }
+        else
+        {
+
+            @foreach (var uz in Model ?? Enumerable.Empty<Farm_Management_System.farm_Management_SystemModel.Task>())
+            {
+                <tr>
+                    <td>@uz.TaskId</td>
+                    <td>@uz.TaskDescription</td>
+                    <td>@uz.TaskProject</td>
+                    <td>@uz.TaskField</td>
+                    <td>@uz.TaskPlant</td>
+                    <td>@uz.TaskStatus</td>
+                    <td>@uz.EmployeeIncharge</td>
+                    <td>@uz.AdminAssigned</td>
+                    <td>@uz.TaskCreateTime</td>
+                    <td>@uz.TaskUpdateTime\</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

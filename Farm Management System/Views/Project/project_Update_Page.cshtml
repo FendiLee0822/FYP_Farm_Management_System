@@ -1,0 +1,40 @@
+﻿@model project_Admin_Model
+
+@{
+    ViewData["Title"] = "Project Update Page";
+}
+
+<div class="col-md-4">
+    <div class="mb-3">
+        <h2 class="text-primary">Project Update Page</h2>
+        <hr />
+    </div>
+
+    <form asp-action="project_Update_Page" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="hidden" asp-for="Project.ProjectId" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Project.ProjectName" class="control-label">Project Name</label>
+            <input asp-for="Project.ProjectName" class="form-control" required/>
+            <span asp-validation-for="Project.ProjectName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Project.AdminCreate"></label>
+            <select asp-for="Project.AdminCreate"
+                    asp-items="@(new SelectList(Model.Admins, "AdminId", "AdminId"))"
+                    class="form-control">
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="hidden" asp-for="Project.ProjectCreateTime" />
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update project?')">Update Project</button>
+        <a asp-controller="Project" asp-action="project_Information_Page" class="btn btn-primary">Back To Project List</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

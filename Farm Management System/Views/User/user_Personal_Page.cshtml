@@ -1,0 +1,62 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.User
+
+@{
+    ViewData["Title"] = "User Personal Page";
+}
+
+<div class="col-md-6">
+    <div class="mb-3">
+        <h2 class="text-primary">User Personal Page</h2>
+        <hr />
+    </div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-6">
+                User ID
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+            <dt class="col-sm-6">
+                First Name
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserFname)
+            </dd>
+            <dt class="col-sm-6">
+                Last Name
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserLname)
+            </dd>
+            <dt class="col-sm-6">
+                Gender
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserGender)
+            </dd>
+            <dt class="col-sm-6">
+                Date of Birth
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserDob)
+            </dd>
+            <dt class="col-sm-6">
+                Account Password
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserPwd)
+            </dd>
+            <dt class="col-sm-6">
+                Role
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserRole)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="personal_Update_Page" asp-route-id="@Model.UserId" class="btn btn-primary">Edit</a>
+    </div>
+</div>
+

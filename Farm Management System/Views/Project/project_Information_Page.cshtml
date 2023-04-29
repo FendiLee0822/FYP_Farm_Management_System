@@ -1,0 +1,152 @@
+﻿@model List<Project>
+
+@{
+    ViewData["Title"] = "Project Information Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Project Information Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Project" asp-action="project_Create_Page" class="btn btn-primary">Create Project</a>
+            <a asp-controller="Project" asp-action="project_Search_Page" class="btn btn-primary">Search Project</a>
+            <a asp-controller="Project" asp-action="project_Attribute_Selection_View" class="btn btn-primary">Create View</a>
+        </div>
+    </div>
+</div>
+
+<div id="map" style="height: 500px"></div>
+
+<!-- Load the Google Maps JavaScript API -->
+<head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArErOjbEB6WI0eUpEEk9dcIWBZRRVhdS0&callback=initMap"
+            async defer></script>
+</head>
+
+
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Project Id</th>
+            <th>Project Name</th>
+            <th>Admin Create</th>
+            <th>Project Create Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() == 0)
+        {
+            <tr>
+                <td colspan="6">No row smatch search criteria</td>
+            </tr>
+        }
+        @foreach (var uz in Model ?? Enumerable.Empty<Project>())
+        {
+            <tr>
+                <td>@uz.ProjectId</td>
+                <td>@uz.ProjectName</td>
+                <td>@uz.AdminCreate</td>
+                <td>@uz.ProjectCreateTime</td>
+                <td><a value="Details" class="btn btn-primary" style="width:90px" asp-controller="Project" asp-action="project_Detail_Page" asp-route-id="@uz.ProjectId"><i class="bi bi-info-circle"></i>Details</a></td>
+                <td><a value="Edit" class="btn btn-warning" style="width:90px" asp-controller="Project" asp-action="project_Update_Page" asp-route-id="@uz.ProjectId"><i class="bi bi-pencil-square"></i>Edit</a></td>
+                <td><a value="Delete" class="btn btn-danger" style="width:90px" asp-controller="Project" asp-action="project_Delete_Page" asp-route-id="@uz.ProjectId"><i class="bi bi-trash"></i>Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 4.3095, lng: 100.6612 },
+            zoom: 14
+        });
+
+        // Define the rectangle boundaries
+        var field1 = {
+            north: 4.30,
+            south: 4.305,
+            east: 100.665,
+            west: 100.66
+        };
+
+        // Define the rectangle boundaries
+        var field2 = {
+            north: 4.295,
+            south: 4.30,
+            east: 100.66,
+            west: 100.655
+        };
+
+        // Draw the rectangle on the map
+        var rectangle = new google.maps.Rectangle({
+            bounds: field1,
+            editable: false,
+            draggable: false,
+            map: map
+        });
+        var rectangle = new google.maps.Rectangle({
+            bounds: field2,
+            editable: false,
+            draggable: false,
+            map: map
+        });
+
+        // Add a click event listener to the map
+        map.addListener('click', handleMapClick);
+
+        // Create a new info window for displaying project details
+        var infoWindow = new google.maps.InfoWindow();
+
+        function handleMapClick(event) {
+            // Check if the click event occurred inside the rectangle
+            if (rectangle.getBounds().contains(event.latLng)) {
+                var latLng = event.latLng;
+                // Do something with the latLng, like perform a search for projects in the area
+                // For example, you could make an AJAX call to your server to retrieve project data for the clicked location
+                $.ajax({
+                    url: '/Project/GetProjectDetails',
+                    method: 'GET',
+                    data: {
+                        lat: latLng.lat(),
+                        lng: latLng.lng()
+                    },
+                    success: function (response) {
+                        // Display the project details in the info window
+                        infoWindow.setContent(response);
+                        infoWindow.setPosition(latLng);
+                        infoWindow.open(map);
+                    }
+                });
+            }
+        }
+        @*function handleMapClick(event) {
+            // Check if the click event occurred inside the rectangle
+            if (rectangle.getBounds().contains(event.latLng)) {
+                var latLng = event.latLng;
+                // Make an AJAX call to the server to retrieve the field information
+                $.ajax({
+                    url: '/Project/GetFieldDetails',
+                    method: 'GET',
+                    data: {
+                        lat: latLng.lat(),
+                        lng: latLng.lng()
+                    },
+                    success: function (response) {
+                        // Display the field information in the info window
+                        var content = '<div><h3>Field Information</h3><p>' + response.fieldName + '</p><p>' + response.fieldSize + '</p></div>';
+                        infoWindow.setContent(content);
+                        infoWindow.setPosition(latLng);
+                        infoWindow.open(map);
+                    }
+                });
+            }
+        }*@
+
+    }
+</script>
+
+

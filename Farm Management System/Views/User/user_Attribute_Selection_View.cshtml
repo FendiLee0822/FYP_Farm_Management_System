@@ -1,0 +1,23 @@
+﻿@using Farm_Management_System.farm_Management_SystemModel
+@model user_Column_Model
+
+<div class="boder p-3">
+    <div>
+        <a asp-controller="User" asp-action="user_Information_Page" class="btn btn-primary">Back to User List</a>
+        <br />
+    </div>
+    <div>
+        <h2 class="text-black-50-primary">Check Attribute to Display</h2>
+        <br />
+    </div>
+    <form method="post">
+        @foreach (var user_Property in typeof(User).GetProperties().Where(prop => !prop.PropertyType.IsGenericType))
+        {
+            <div>
+                <input type="checkbox" name="selected_User_Attribute" value="@user_Property.Name" />@user_Property.Name
+            </div>
+        }
+
+        <button type="submit">Submit</button>
+    </form>
+</div>

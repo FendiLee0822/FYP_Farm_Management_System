@@ -1,0 +1,6 @@
+UserId,UserFname,UserLname,UserGender,UserDob,UserPwd,UserRole,
+9,Tick Wee,Lee,Male,06/02/2023 00:00:00,password,Admin,
+10,Ling Hao,Lee,Male,07/02/2023 00:00:00,password,Admin,
+11,Xin Ting,Lee,Female,12/02/2023 14:57:00,password,Employee,
+12,Xin Yu,Lee,Female,12/02/2023 14:58:00,password,Employee,
+1015,xx,xx,Male,16/03/2023 08:46:00,xxx,Admin,

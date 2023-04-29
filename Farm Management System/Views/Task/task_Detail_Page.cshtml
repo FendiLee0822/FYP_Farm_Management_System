@@ -1,0 +1,75 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.Task
+
+@{
+    ViewData["Title"] = "Task Detail Page";
+}
+
+<div class="col-md-6">
+    <div class="mb-3">
+        <h2 class="text-primary">Task Detail Page</h2>
+        <hr />
+    </div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-6">
+                Task Description
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskDescription)
+            </dd>
+            <dt class="col-sm-6">
+                Project
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskProject)
+            </dd>
+            <dt class="col-sm-6">
+                Field
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskField)
+            </dd>
+            <dt class="col-sm-6">
+                Plant
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskPlant)
+            </dd>
+            <dt class="col-sm-6">
+                Task Status
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskStatus)
+            </dd>
+            <dt class="col-sm-6">
+                Employee Incharge
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.EmployeeIncharge)
+            </dd>
+            <dt class="col-sm-6">
+                Admin Assigned
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.AdminAssigned)
+            </dd>
+            <dt class="col-sm-6">
+                Task Create Time
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskCreateTime)
+            </dd>
+            <dt class="col-sm-6">
+                Task Update Time
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TaskUpdateTime)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="task_Update_Page" asp-route-id="@Model.TaskId" class="btn btn-primary">Edit</a>
+        <a asp-action="task_Information_Page" class="btn btn-primary">Back to Task List</a>
+    </div>
+</div>
+

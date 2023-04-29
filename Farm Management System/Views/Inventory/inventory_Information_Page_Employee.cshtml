@@ -1,0 +1,48 @@
+﻿@model List<Inventory>
+
+@{
+    ViewData["Title"] = "Inventory Information Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <h2 class="text-primary">Inventory Information Page</h2>
+        </div>
+        <div class="col-7 text-right">
+            <a asp-controller="Inventory" asp-action="inventory_Search_Page_Employee" class="btn btn-primary">Search Inventory</a>
+            <a asp-controller="Inventory" asp-action="inventory_Attribute_Selection_View_Employee" class="btn btn-primary">Create View</a>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Inventory ID</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>User Update</th>
+            <th>Latest Update Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() == 0)
+        {
+            <tr>
+                <td colspan="6">No row match search criteria</td>
+            </tr>
+        }
+        @foreach (var uz in Model ?? Enumerable.Empty<Inventory>())
+        {
+            <tr>
+                <td>@uz.InventoryId</td>
+                <td>@uz.InventoryName</td>
+                <td>@uz.InventoryAmount</td>
+                <td>@uz.UserUpdate</td>
+                <td>@uz.InventoryUpdateTime</td>
+                <td><a value="Edit" class="btn btn-warning" style="width:90px" asp-controller="Inventory" asp-action="inventory_Update_Page_Employee" asp-route-id="@uz.InventoryId"><i class="bi bi-pencil-square"></i>Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

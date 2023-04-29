@@ -1,0 +1,45 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.Inventory
+
+@{
+    ViewData["Title"] = "Inventory Delete Page";
+}
+
+<div class="col-md-4">
+    <div class="mb-3">
+        <h2 class="text-primary">Inventory Delete Page</h2>
+        <hr />
+    </div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-6">Inventory Name</dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.InventoryName)
+            </dd>
+            <dt class="col-sm-6">
+                Inventory Amount
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.InventoryAmount)
+            </dd>
+            <dt class="col-sm-6">
+                User Update
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserUpdate)
+            </dd>
+            <dt class="col-sm-6">
+                Inventory Update Time
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.InventoryUpdateTime)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <form asp-action="inventory_Delete_Page">
+            <input type="hidden" asp-for="InventoryId" />
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete inventory?')">Delete</button>
+            <a asp-action="inventory_Information_Page" class="btn btn-primary">Back to Inventory List</a>
+        </form>
+    </div>
+</div>

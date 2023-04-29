@@ -1,0 +1,52 @@
+﻿@model project_Column_Selection_Model
+
+@{
+    ViewData["Title"] = "Project Created View Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Project Created View Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Project" asp-action="project_Information_Page" class="btn btn-primary">Back to Project List</a>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            @foreach (var selected_Property in Model.selected_Project_Attribute) // Read the data in the "selected_Column" list
+            {
+                <th>
+                    @selected_Property
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uz in Model.Projects)
+        {
+            <tr>
+                @if (Model.selected_Project_Attribute.Contains("ProjectId"))
+                {
+                    <td>@uz.ProjectId</td>
+                }
+                @if (Model.selected_Project_Attribute.Contains("ProjectName"))
+                {
+                    <td>@uz.ProjectName</td>
+                }
+                @if (Model.selected_Project_Attribute.Contains("AdminCreate"))
+                {
+                    <td>@uz.AdminCreate</td>
+                }
+                @if (Model.selected_Project_Attribute.Contains("ProjectCreateTime"))
+                {
+                    <td>@uz.ProjectCreateTime</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

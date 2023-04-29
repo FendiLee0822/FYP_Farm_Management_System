@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    int role_ID = HttpContextAccessor?.HttpContext?.Session.GetInt32("user_Role") ?? 0;
+
+
+    switch (role_ID)
+    {
+        case 1:
+            Layout = "_admin_Menu";
+            break;
+        case 2:
+            Layout = "_employee_Menu";
+            break;
+        default:
+            Layout = "_Layout";
+            break;
+
+    }
+}

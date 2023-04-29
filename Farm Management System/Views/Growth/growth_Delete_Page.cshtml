@@ -1,0 +1,60 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.Growth
+
+@{
+    ViewData["Title"] = "Growth Delete Page";
+}
+
+<div class="col-md-6">
+    <div class="mb-3">
+        <h2 class="text-primary">Growth Delete Page</h2>
+        <hr />
+    </div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-6">
+                Growth Project
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.GrowthProject)
+            </dd>
+            <dt class="col-sm-6">
+                Growth Plant
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.GrowthPlant)
+            </dd>
+            <dt class="col-sm-6">
+                Growth Field
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.GrowthField)
+            </dd>
+            <dt class="col-sm-6">
+                Growth Status
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.GrowthStatus)
+            </dd>
+            <dt class="col-sm-6">
+                User Update
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserUpdate)
+            </dd>
+            <dt class="col-sm-6">
+                Growth Update Time
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.GrowthUpdateTime)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <form asp-action="growth_Delete_Page">
+            <input type="hidden" asp-for="GrowthId" />
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete growth?')">Delete</button>
+            <a asp-action="growth_Information_Page" class="btn btn-primary">Back to Growth List</a>
+        </form>
+    </div>
+</div>
+

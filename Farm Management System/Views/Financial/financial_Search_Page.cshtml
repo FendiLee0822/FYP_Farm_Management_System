@@ -1,0 +1,66 @@
+﻿@model List<Financial>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a asp-controller="Financial" asp-action="financial_Information_Page" class="btn btn-primary">Back to Transaction List</a>
+            <br />
+        </div>
+        <div class="col-6">
+            <h2 class="text-primary">Transaction Search Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            @using (Html.BeginForm("financial_Search_Page", "Financial", FormMethod.Get))
+            {
+                <b>Search By:</b>
+                @Html.RadioButton("SearchBy", "TransactionName") <span>TransactionName</span>
+                @Html.RadioButton("SearchBy", "TransactionProject") <span>TransactionProject</span>
+                <br />
+
+                @Html.TextBox("search")<input type="submit" value="Search" />
+            }
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:auto">
+    <thead>
+        <tr>
+            <th>Transaction Id</th>
+            <th>Transaction Name</th>
+            <th>Transaction Project</th>
+            <th>Income Amount</th>
+            <th>Expense Amount</th>
+            <th>Admin Update</th>
+            <th>Latest Update Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() == 0)
+        {
+            <tr>
+                <td colspan="95" style="color:red">
+                    No transaction under this role...
+                </td>
+            </tr>
+        }
+        else
+        {
+
+            @foreach (var uz in Model ?? Enumerable.Empty<Financial>())
+            {
+                <tr>
+                    <td>@uz.TransactionId</td>
+                    <td>@uz.TransactionName</td>
+                    <td>@uz.TransactionProject</td>
+                    <td>@uz.IncomeAmount</td>
+                    <td>@uz.ExpenseAmount</td>
+                    <td>@uz.AdminUpdate</td>
+                    <td>@uz.TransactionUpdateTime</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

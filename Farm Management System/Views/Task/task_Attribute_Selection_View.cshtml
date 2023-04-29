@@ -1,0 +1,24 @@
+﻿@using Farm_Management_System.farm_Management_SystemModel
+@model task_Column_Model
+
+<div class="boder p-3">
+    <div>
+        <a asp-controller="Task" asp-action="task_Information_Page" class="btn btn-primary">Back to Task List</a>
+        <br />
+    </div>
+    <div>
+        <h2 class="text-black-50-primary">Check Attribute to Display</h2>
+        <br />
+    </div>
+    <form method="post">
+        @foreach (var task_Property in Model.Task.GetType().GetProperties()
+       .Where(p => !new[] { "AdminAssignedNavigation", "EmployeeInchargeNavigation", "TaskFieldNavigation", "TaskPlantNavigation", "TaskProjectNavigation" }.Contains(p.Name)))
+        {
+            <div>
+                <input type="checkbox" name="selected_Task_Attribute" value="@task_Property.Name" />@task_Property.Name
+            </div>
+        }
+
+        <button type="submit">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+﻿@using Farm_Management_System.farm_Management_SystemModel
+@model plant_Column_Model
+
+<div class="boder p-3">
+    <div>
+        <a asp-controller="Plant" asp-action="plant_Information_Page_Employee" class="btn btn-primary">Back to Plant List</a>
+        <br />
+    </div>
+    <div>
+        <h2 class="text-black-50-primary">Check Attribute to Display</h2>
+        <br />
+    </div>
+    <form method="post">
+        @foreach (var plant_Property in typeof(Plant).GetProperties().Where(p => p.PropertyType != typeof(ICollection<Growth>) && p.PropertyType != typeof(ICollection<Farm_Management_System.farm_Management_SystemModel.Task>) && p.PropertyType != typeof(Admin)))
+        {
+            <div>
+                <input type="checkbox" name="selected_Plant_Attribute" value="@plant_Property.Name" />@plant_Property.Name
+            </div>
+        }
+        <button type="submit">Submit</button>
+    </form>
+</div>

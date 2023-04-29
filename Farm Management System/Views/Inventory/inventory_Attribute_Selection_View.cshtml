@@ -1,0 +1,30 @@
+﻿@using Farm_Management_System.farm_Management_SystemModel
+@model inventory_Column_Model
+
+<div class="boder p-3">
+    <div>
+        <a asp-controller="Inventory" asp-action="inventory_Information_Page" class="btn btn-primary">Back to Inventory List</a>
+        <br />
+    </div>
+    <div>
+        <h2 class="text-black-50-primary">Check Attribute to Display</h2>
+        <br />
+    </div>
+    <form method="post">
+        @*@foreach (var inventory_Property in Model.Inventory.GetType().GetProperties())
+        {
+            <div>
+                <input type="checkbox" name="selected_Inventory_Attribute" value="@inventory_Property.Name" />@inventory_Property.Name
+            </div>
+        }*@
+
+        @foreach (var inventory_Property in typeof(Inventory).GetProperties().Where(p => p.PropertyType != typeof(ICollection<Growth>) && p.PropertyType != typeof(ICollection<Farm_Management_System.farm_Management_SystemModel.Task>) && p.Name != "UserUpdateNavigation"))
+        {
+            <div>
+                <input type="checkbox" name="selected_Inventory_Attribute" value="@inventory_Property.Name" />@inventory_Property.Name
+            </div>
+        }
+
+        <button type="submit">Submit</button>
+    </form>
+</div>

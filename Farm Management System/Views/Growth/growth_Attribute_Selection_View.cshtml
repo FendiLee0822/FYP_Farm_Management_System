@@ -1,0 +1,23 @@
+﻿@using Farm_Management_System.farm_Management_SystemModel
+@model growth_Column_Model
+
+<div class="boder p-3">
+    <div>
+        <a asp-controller="Growth" asp-action="growth_Information_Page" class="btn btn-primary">Back to Growth List</a>
+        <br />
+    </div>
+    <div>
+        <h2 class="text-black-50-primary">Check Attribute to Display</h2>
+        <br />
+    </div>
+    <form method="post">
+        @foreach (var growth_Property in Model.Growth.GetType().GetProperties()
+         .Where(p => !new[] { "GrowthFieldNavigation", "GrowthPlantNavigation", "GrowthProjectNavigation", "UserUpdateNavigation"}.Contains(p.Name)))
+        {
+            <div>
+                <input type="checkbox" name="selected_Growth_Attribute" value="@growth_Property.Name" />@growth_Property.Name
+            </div>
+        }
+        <button type="submit">Submit</button>
+    </form>
+</div>

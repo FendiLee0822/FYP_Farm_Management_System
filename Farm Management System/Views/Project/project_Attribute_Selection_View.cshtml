@@ -1,0 +1,24 @@
+﻿@using Farm_Management_System.farm_Management_SystemModel
+@model project_Column_Model
+
+<div class="boder p-3">
+    <div>
+        <a asp-controller="Project" asp-action="project_Information_Page" class="btn btn-primary">Back to Project List</a>
+        <br />
+    </div>
+    <div>
+        <h2 class="text-black-50-primary">Check Attribute to Display</h2>
+        <br />
+    </div>
+    <form method="post">
+        @foreach (var project_Property in Model.Project.GetType().GetProperties()
+            .Where(p => !new[] { "AdminCreateNavigation", "Financials", "Growths", "Tasks"}.Contains(p.Name)))
+        {
+            <div>
+                <input type="checkbox" name="selected_Project_Attribute" value="@project_Property.Name" />@project_Property.Name
+            </div>
+        }
+
+        <button type="submit">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,68 @@
+﻿@model Farm_Management_System.farm_Management_SystemModel.User
+
+@{
+    ViewData["Title"] = "User Delete Page";
+}
+
+<div class="col-md-6">
+    <div class="mb-3">
+        <h2 class="text-primary">User Delete Page</h2>
+        <hr />
+    </div>
+
+    <div>
+        <dl class="row">
+            <dt class="col-sm-6">
+                User ID
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+            <dt class="col-sm-6">
+                First Name
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserFname)
+            </dd>
+            <dt class="col-sm-6">
+                Last Name
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserLname)
+            </dd>
+            <dt class="col-sm-6">
+                Gender
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserGender)
+            </dd>
+            <dt class="col-sm-6">
+                Date of Birth
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserDob)
+            </dd>
+            <dt class="col-sm-6">
+                Account Password
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserPwd)
+            </dd>
+            <dt class="col-sm-6">
+                Role
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.UserRole)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <form asp-action="user_Delete_Page">
+            <input type="hidden" asp-for="UserId" />
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete user?')">Delete</button>
+            <a asp-action="user_Information_Page" class="btn btn-primary">Back to User List</a>
+        </form>
+
+    </div>
+</div>
+

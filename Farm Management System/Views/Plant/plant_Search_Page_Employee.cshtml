@@ -1,0 +1,74 @@
+﻿@model List<Plant>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a asp-controller="Plant" asp-action="plant_Information_Page_Employee" class="btn btn-primary">Back to Plant List</a>
+            <br />
+        </div>
+        <div class="col-6">
+            <h2 class="text-primary">Plant Search Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            @using (Html.BeginForm("plant_Search_Page", "Plant", FormMethod.Get))
+            {
+                <b>Search By:</b>
+                @Html.RadioButton("SearchBy", "PlantName") <span>PlantName</span>
+                @Html.RadioButton("SearchBy", "PlantBugTime") <span>PlantBugTime</span>
+                @Html.RadioButton("SearchBy", "PlantFloweringTime") <span>PlantFloweringTime</span>
+                <br />
+                @Html.RadioButton("SearchBy", "PlantSetTime") <span>PlantSetTime</span>
+                @Html.RadioButton("SearchBy", "PlantGrowthTime") <span>PlantGrowthTime</span>
+                @Html.RadioButton("SearchBy", "PlantRipeningTime") <span>PlantRipeningTime</span>
+                <br />
+                @Html.TextBox("search")<input type="submit" value="Search" />
+            }
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:auto">
+    <thead>
+        <tr>
+            <th>Plant ID</th>
+            <th>Plant Name</th>
+            <th>Plant Bug Time</th>
+            <th>Plant Flowering Time</th>
+            <th>Plant Set Time</th>
+            <th>Plant Growth Time</th>
+            <th>Plant Ripening Time</th>
+            <th>Admin ID Update</th>
+            <th>Latest Update Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() == 0)
+        {
+            <tr>
+                <td colspan="95" style="color:red">
+                    No plant under this role...
+                </td>
+            </tr>
+        }
+        else
+        {
+
+            @foreach (var uz in Model ?? Enumerable.Empty<Plant>())
+            {
+                <tr>
+                    <td>@uz.PlantId</td>
+                    <td>@uz.PlantName</td>
+                    <td>@uz.PlantBugTime</td>
+                    <td>@uz.PlantFloweringTime</td>
+                    <td>@uz.PlantSetTime</td>
+                    <td>@uz.PlantGrowthTime</td>
+                    <td>@uz.PlantRipeningTime</td>
+                    <td>@uz.AdminUpdate</td>
+                    <td>@uz.PlantUpdateTime</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

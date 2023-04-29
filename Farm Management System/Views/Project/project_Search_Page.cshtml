@@ -1,0 +1,59 @@
+﻿@model List<Project>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a asp-controller="Project" asp-action="project_Information_Page" class="btn btn-primary">Back to Project List</a>
+            <br />
+        </div>
+        <div class="col-6">
+            <h2 class="text-primary">Project Search Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            @using (Html.BeginForm("project_Search_Page", "Project", FormMethod.Get))
+            {
+                <b>Search By:</b>
+                @Html.RadioButton("SearchBy", "ProjectName") <span>ProjectName</span>
+                <br />
+
+                @Html.TextBox("search")<input type="submit" value="Search" />
+            }
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:auto">
+    <thead>
+        <tr>
+            <td>Project Id</td>
+            <td>Project Name</td>
+            <td>Admin Create</td>
+            <td>Project Create Time</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() == 0)
+        {
+            <tr>
+                <td colspan="95" style="color:red">
+                    No Project under this role...
+                </td>
+            </tr>
+        }
+        else
+        {
+
+            @foreach (var uz in Model ?? Enumerable.Empty<Project>())
+            {
+                <tr>
+                    <td>@uz.ProjectId</td>
+                    <td>@uz.ProjectName</td>
+                    <td>@uz.AdminCreate</td>
+                    <td>@uz.ProjectCreateTime</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

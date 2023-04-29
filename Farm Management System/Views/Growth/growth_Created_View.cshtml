@@ -1,0 +1,64 @@
+﻿@model growth_Column_Selection_Model
+
+@{
+    ViewData["Title"] = "Growth Created View Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Growth Created View Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Growth" asp-action="growth_Information_Page" class="btn btn-primary">Back to Growth List</a>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            @foreach (var selected_Property in Model.selected_Growth_Attribute) // Read the data in the "selected_Column" list
+            {
+                <th>
+                    @selected_Property
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uz in Model.Growths)
+        {
+            <tr>
+                @if (Model.selected_Growth_Attribute.Contains("GrowthId"))
+                {
+                    <td>@uz.GrowthId</td>
+                }
+                @if (Model.selected_Growth_Attribute.Contains("GrowthProject"))
+                {
+                    <td>@uz.GrowthProject</td>
+                }
+                @if (Model.selected_Growth_Attribute.Contains("GrowthPlant"))
+                {
+                    <td>@uz.GrowthPlant</td>
+                }
+                @if (Model.selected_Growth_Attribute.Contains("GrowthField"))
+                {
+                    <td>@uz.GrowthField</td>
+                }
+                @if (Model.selected_Growth_Attribute.Contains("GrowthStatus"))
+                {
+                    <td>@uz.GrowthStatus</td>
+                }
+                @if (Model.selected_Growth_Attribute.Contains("UserUpdate"))
+                {
+                    <td>@uz.UserUpdate</td>
+                }
+                @if (Model.selected_Growth_Attribute.Contains("GrowthUpdateTime"))
+                {
+                    <td>@uz.GrowthUpdateTime</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

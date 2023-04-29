@@ -1,0 +1,56 @@
+﻿@model inventory_Column_Selection_Model
+
+@{
+    ViewData["Title"] = "Inventory Created View Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Inventory Created View Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Inventory" asp-action="inventory_Information_Page" class="btn btn-primary">Back to Inventory List</a>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            @foreach (var selected_Property in Model.selected_Inventory_Attribute) // Read the data in the "selected_Column" list
+            {
+                <th>
+                    @selected_Property
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uz in Model.Inventorys)
+        {
+            <tr>
+                @if (Model.selected_Inventory_Attribute.Contains("InventoryId"))
+                {
+                    <td>@uz.InventoryId</td>
+                }
+                @if (Model.selected_Inventory_Attribute.Contains("InventoryName"))
+                {
+                    <td>@uz.InventoryName</td>
+                }
+                @if (Model.selected_Inventory_Attribute.Contains("InventoryAmount"))
+                {
+                    <td>@uz.InventoryAmount</td>
+                }
+                @if (Model.selected_Inventory_Attribute.Contains("UserUpdate"))
+                {
+                    <td>@uz.UserUpdate</td>
+                }
+                @if (Model.selected_Inventory_Attribute.Contains("InventoryUpdateTime"))
+                {
+                    <td>@uz.InventoryUpdateTime</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

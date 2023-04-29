@@ -1,0 +1,37 @@
+﻿@model List<Inventory>
+
+
+<a asp-controller="Inventory" asp-action="inventory_Information_Page" class="btn btn-primary">Back to Inventory List</a>
+<hr />
+<form asp-controller="Inventory" asp-action="inventory_Import_Page" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <hr />
+    <button type="submit">Upload</button>
+</form>
+
+@if (Model.Count() > 0)
+{
+    <hr />
+    <h2 class="text-primary">Imported Inventory List</h2>
+    <table class="table-bordered table-striped" style="width:auto">
+        <tr>
+            <th>Inventory Id</th>
+            <th>Inventory Name</th>
+            <th>Inventory Amount</th>
+            <th>User Update</th>
+            <th>Admin ID Update</th>
+            <th>Inventory Update Time</th>
+        </tr>
+        <tbody>
+            @foreach (var uz in Model)
+            {
+                <tr>
+                    <td>@uz.InventoryId</td>
+                    <td>@uz.InventoryName</td>
+                    <td>@uz.InventoryAmount</td>
+                    <td>@uz.UserUpdate</td>
+                    <td>@uz.InventoryUpdateTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>}

@@ -1,0 +1,64 @@
+﻿@model user_Column_Selection_Model
+
+@{
+    ViewData["Title"] = "User Created View Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">User Created View Page</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="User" asp-action="user_Information_Page" class="btn btn-primary">Back to User List</a>
+        </div>
+    </div>
+</div>
+
+<table class="table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            @foreach (var selected_Property in Model.selected_User_Attribute) // Read the data in the "selected_Column" list
+            {
+            <th>
+                @selected_Property
+            </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uz in Model.Users)
+        {
+        <tr>
+            @if (Model.selected_User_Attribute.Contains("UserId"))
+            {
+            <td>@uz.UserId</td>
+            }
+            @if (Model.selected_User_Attribute.Contains("UserFname"))
+            {
+            <td>@uz.UserFname</td>
+            }
+            @if (Model.selected_User_Attribute.Contains("UserLname"))
+            {
+            <td>@uz.UserLname</td>
+            }
+            @if (Model.selected_User_Attribute.Contains("UserGender"))
+            {
+            <td>@uz.UserGender</td>
+            }
+            @if (Model.selected_User_Attribute.Contains("UserDob"))
+            {
+            <td>@uz.UserDob</td>
+            }
+            @if (Model.selected_User_Attribute.Contains("UserPwd"))
+            {
+            <td>@uz.UserPwd</td>
+            }
+            @if (Model.selected_User_Attribute.Contains("UserRole"))
+            {
+            <td>@uz.UserRole</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
